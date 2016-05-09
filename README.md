@@ -25,3 +25,4 @@
 ### Closing
 - Happy customers are now seeing more games they like and company making more revenue.
 
+![Alt text](/img/venn.png?raw=true "Image Title")
