@@ -16,20 +16,20 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 ![Alt text](/img/venn.png?raw=true "Image Title")
 
 ### Recommender Build Process
-	* Scraped 600K data points, representing about 12,000 board games and 31,000 users.
-	* EDA how many ratings per user, density of matrix
-	* Cold start problem.
-	* In the end I was able to achieve good results with x metrics.
-	* For fun I wanted to see if there were areas of popularity for certain games within different regions. So if I recommended a board game, you could see where else this game was popular.
+	- Scraped 600K data points, representing about 12,000 board games and 31,000 users.
+	- EDA how many ratings per user, density of matrix
+	- Cold start problem.
+	- In the end I was able to achieve good results with x metrics.
+	- For fun I wanted to see if there were areas of popularity for certain games within different regions. So if I recommended a board game, you could see where else this game was popular.
 
 ### Tools Used
-	* Python 2.7
-	* Graphlab
-	* PostreSQL
-	* BeautifulSoup
-	* Flask
-	* Zurb Foundation 6
-	* AWS for Gridsearch
+	- Python 2.7
+	- Graphlab
+	- PostreSQL
+	- BeautifulSoup
+	- Flask
+	- Zurb Foundation 6
+	- AWS for Gridsearch
 
 ### Results
 - Happy customers are now seeing more games they like and company making more revenue.
