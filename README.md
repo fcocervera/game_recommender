@@ -8,12 +8,13 @@
 	- `models.py` - Collects main data and side data to build Graphlab model.
 
 ### Problem
-- ABC Board Games noticed that it’s taking a long time for their users to find games they like. It’s giving them a bad experience and cutting into their revenue be causing users are churning from the bad experience.
+In general, the problem recommenders are trying to solve is showing website visitors items that they are likely to be interested in buying. In the Venn diagram below, 'R' is our inventory of board games and 'V' is the board games our visitors are interestd in buying. The union of the two, RUV, is the board games that site visitors are shown and are likely to want to purchase. Recommenders are looking to increase the size of RUV and thus increase the likelihood of a sale to increase revenue.  
 
 ![Alt text](/img/venn.png?raw=true "Image Title")
 
 ### Solution
-- I built a recommender that allows the system to leverage games that you’ve liked and match you with games that otter’s with similar interests also liked. It’s how Amazon recommends you books. 
+I built a recommender that allows the system to leverage games that you’ve liked and match you with games that otter’s with similar interests also liked. It’s how Amazon recommends you books. 
+
 
 ### Process
 -  I built a recommender that and chose to build one with high precision and low recall
