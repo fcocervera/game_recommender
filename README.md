@@ -1,5 +1,12 @@
 ## Recommender Capstone Project
 
+### File Descriptions
+	- `postgres.py` - Used to initialize database tables and associated schema.
+	- `application.py` - Front-end of application built with Flask.
+	- `model_tuning.py` - Basic gridsearch over hyper-params
+	- `scraping.py` - Scrapers used to collect all relavent data for project.
+	- `models.py` - Collects main data and side data to build Graphlab model.
+
 ### Problem
 - ABC Board Games noticed that it’s taking a long time for their users to find games they like. It’s giving them a bad experience and cutting into their revenue be causing users are churning from the bad experience.
 
