@@ -1,0 +1,145 @@
+<!doctype html>
+<html class="no-js" lang="en">
+
+	<head>
+		<style>
+	      html, body, #map {
+	        height: 40%;
+	        padding: 300;
+	        margin: 300;
+	      }
+	    </style>
+		<meta charset="utf-8"/>
+		<title>Board Game Recommender Results</title>
+		<link rel="stylesheet" href="{{ url_for('static',filename='foundation.css')}}">
+		<link rel="stylesheet" href="http://libs.cartocdn.com/cartodb.js/v3/3.15/themes/css/cartodb.css" />
+	</head>
+
+	<body class='background-image'>
+		<div class="top-bar">
+			<div class="row">
+				<div class="top-bar-left">
+					<ul class="dropdown menu" data-dropdown-menu>
+						<li class="menu-text">Choose a user and we'll recommend 5 board games.</li>
+						<li class="has-submenu"><a href="#">One</a>
+					<ul class="submenu menu vertical" data-submenu>
+						<li><a href="#">One</a></li>
+						<li><a href="#">Two</a></li>
+						<li><a href="#">Three</a></li>
+					</ul>
+					</li>
+						<li><a href="#">Two</a></li>
+						<li><a href="#">Three</a></li>
+					</ul>
+				</div>
+				<div class="top-bar-right">
+					<form id='userinfoform' method='post' action='predict'>
+						<ul class="menu">
+							<li><input type="search" placeholder="Search" name='name'></li>
+							<li><button type="Submit" class="button">Search</button></li>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+		<br>
+
+		<div class="column row">
+			<h1>Board Game Recommender</h1>
+			<div class="row medium-up-3 large-up-5" data-equalizer>
+				<div class="column text-center" data-equalizer-watch>
+					<img class="thumbnail" src="{{ pic_one }}">
+					<h4>{{ rec_one }}</h4>
+					<p>Average Rating: {{ rating_one }}</p>
+					<a href="" class="button hollow tiny expanded">Buy Now</a>
+				</div>
+				<div class="column text-center" data-equalizer-watch>
+					<img class="thumbnail" src="{{ pic_two }}">
+					<h4>{{ rec_two }}</h4>
+					<p>Average Rating: {{ rating_two }}</p>
+					<a href="#" class="button hollow tiny expanded">Buy Now</a>
+				</div>
+				<div class="column text-center" data-equalizer-watch>
+					<img class="thumbnail" src="{{ pic_three }}">
+					<h4>{{ rec_three }}</h4>
+					<p>Average Rating: {{ rating_three }}</p>
+					<a href="#" class="button hollow tiny expanded">Buy Now</a>
+				</div>
+				<div class="column text-center" data-equalizer-watch>
+					<img class="thumbnail" src="{{ pic_four }}">
+					<h4>{{ rec_four }}</h4>
+					<p>Average Rating: {{ rating_four }}</p>
+					<a href="#" class="button hollow tiny expanded">Buy Now</a>
+				</div>
+				<div class="column text-center" data-equalizer-watch>
+					<img class="thumbnail" src="{{ pic_five }}">
+					<h4>{{ rec_five }}</h4>
+					<p>Average Rating: {{ rating_five }}</p>
+					<a href="#" class="button hollow tiny expanded">Buy Now</a>
+				</div>
+			</div>
+			<hr>
+		</div>
+		 
+
+		<div class="text-center">
+				<h3>Recommended Board Game Popularity by Region</h3>
+				<p>Just for fun, the map below displays the popularity of the recommended board games by region.</p>
+		</div>		
+		<div id="map" class="large-8 columns large-centered"></div>
+		<button type="button" id="button-basemap1" onclick="setButton1();">Region 1</button>
+
+	
+
+	<!-- CARTODB JAVASCRIPT BEGIN -->
+    <script src="http://libs.cartocdn.com/cartodb.js/v3/3.15/cartodb.js"></script>
+
+    <script>
+        var dataLayer;
+        function setButton1(){
+          	//filtering by area
+         dataLayer.setSQL("select * from european_countries_e where area > 5000");
+        	//changing the css, not mandatory!
+         dataLayer.setCartoCSS("#european_countries_e{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #FFF; line-width: 1; line-opacity: 0.5; } #european_countries_e [ area <= 1638094] { polygon-fill: #B10026; } #european_countries_e [ area <= 55010] { polygon-fill: #E31A1C; } #european_countries_e [ area <= 34895] { polygon-fill: #FC4E2A; } #european_countries_e [ area <= 12890] { polygon-fill: #FD8D3C; } #european_countries_e [ area <= 10025] { polygon-fill: #FEB24C; } #european_countries_e [ area <= 9150] { polygon-fill: #FED976; } #european_countries_e [ area <= 5592] { polygon-fill: #FFFFB2; } ");
+        }
+
+        function main() {
+        var map = new L.Map('map', {
+          zoomControl: false,
+          center: [43, 0],
+          zoom: 3
+              });
+
+        //Adding the basemap here
+            var basemap = L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors, &copy; <a href="http://cartodb.com/attributions">CartoDB</a>'
+        }).addTo(map);
+          
+        cartodb.createLayer(map, {
+          //change your username below
+          user_name: 'documentation',
+          type: 'cartodb',
+          sublayers: [{
+
+            //change your sql below
+            sql: "SELECT e.cartodb_id, e.area, w.subregion, w.un, e.the_geom, e.the_geom_webmercator FROM european_countries_e e LEFT JOIN world_borders w ON e.iso_2_code = w.iso2",
+            
+            //change your cartocss below. you can copy it from the CartoDB Editor and remove the line breaks.
+            cartocss: "#european_countries_e{ polygon-fill: #FFFFB2; polygon-opacity: 0.8; line-color: #FFF; line-width: 1; line-opacity: 0.5; } #european_countries_e [ area <= 1638094] { polygon-fill: #B10026; } #european_countries_e [ area <= 55010] { polygon-fill: #E31A1C; } #european_countries_e [ area <= 34895] { polygon-fill: #FC4E2A; } #european_countries_e [ area <= 12890] { polygon-fill: #FD8D3C; } #european_countries_e [ area <= 10025] { polygon-fill: #FEB24C; } #european_countries_e [ area <= 9150] { polygon-fill: #FED976; } #european_countries_e [ area <= 5592] { polygon-fill: #FFFFB2; }"
+        }]
+        })
+      .addTo(map)
+      .done(function(layer) {
+
+      //here I store the layer in the variable, so that we can query it outside this function
+      dataLayer = layer.getSubLayer(0);
+        })
+        .error(function(err) {
+          console.log(err);
+        });
+      }
+      window.onload = main;
+    </script>
+	<!-- CARTODB JAVASCRIPT END -->
+	</body>
+</html>
