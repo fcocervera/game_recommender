@@ -8,13 +8,12 @@
 	- `models.py` - Collects main data and side data to build Graphlab model.
 
 ### Problem
-In general, the problem recommenders are trying to solve is showing website visitors items that they are likely to be interested in buying. In the Venn diagram below, 'R' is our inventory of board games and 'V' is the board games our visitors are interestd in buying. The union of the two, RUV, is the board games that site visitors are shown and are likely to want to purchase. Recommenders are looking to increase the size of RUV and thus increase the likelihood of a sale to increase revenue.  
-
-![Alt text](/img/venn.png?raw=true "Image Title")
+Companies are looking to increase sales. Instead of randomly selecting items to display to visitors, they prefer a targeted approach that increases the likelihood of displaying an item the visitor will buy.
 
 ### Solution
-I built a recommender that allows the system to leverage games that you’ve liked and match you with games that otter’s with similar interests also liked. It’s how Amazon recommends you books. 
+In the Venn diagram below, where 'R' is our inventory of board games and 'V' is the board games our visitors are interestd in buying, recommenders will increase RUV to increase the likelihood of a purchase. 
 
+![Alt text](/img/venn.png?raw=true "Image Title")
 
 ### Process
 -  I built a recommender that and chose to build one with high precision and low recall
