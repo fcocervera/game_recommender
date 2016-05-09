@@ -47,7 +47,7 @@ def scrape_board_games():
 	(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
 
 	for page_number in xrange(1, 119): # Stores the top 12,000 board games
-	    url = 'https://boardgamegeek.com/browse/boardgame/page/%s' % page_number
+	    url = 'https://<private>.com/browse/boardgame/page/%s' % page_number
     	z = requests.get(url, headers=headers)
 	    bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
@@ -74,7 +74,7 @@ def scrape_usernames(zip_codes):
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
     for zip_code in zip_codes:
         users = set()
-        url = 'https://boardgamegeek.com/findgamers.php?action=findclosest&country=US&srczip=%s&maxdist=100&B1=Submit' % zip_code
+        url = 'https://<private>.com/findgamers.php?action=findclosest&country=US&srczip=%s&maxdist=100&B1=Submit' % zip_code
 	
 		headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
 		(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}	    
@@ -107,9 +107,9 @@ def scrape_usernames(zip_codes):
 def scrape_user_data(user):
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
 	if len(user.split()) == 1:
-		url = 'https://boardgamegeek.com/collection/user/%s' % (user)
+		url = 'https://<private>.com/collection/user/%s' % (user)
 	else:
-		url = 'https://boardgamegeek.com/collection/user/%s' % ('%20'.join(user.split()))
+		url = 'https://<private>.com/collection/user/%s' % ('%20'.join(user.split()))
 	headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
 	(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
     z = requests.get(url, headers=headers)
@@ -218,9 +218,9 @@ def scrape_user_location(user):
     user_city = ''
     user_state = ''
     if len(user.split()) == 1:
-        url = 'https://boardgamegeek.com/user/%s' % (user)
+        url = 'https://<private>.com/user/%s' % (user)
     else:
-        url = 'https://boardgamegeek.com/user/%s' % ('%20'.join(user.split()))
+        url = 'https://<private>.com/user/%s' % ('%20'.join(user.split()))
 
     headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
     (KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
