@@ -95,11 +95,11 @@ def scrape_usernames(zip_codes):
  	# Delete duplicates in case of overlap for zip code 100 mile radius.
     c = conn.cursor()
     c.execute(""" DELETE FROM user_names
-						WHERE id IN (	SELECT id 
-						FROM (SELECT id,
-                      		ROW_NUMBER() OVER (partition BY user_name ORDER BY id) AS rnum
-                 		FROM user_names) t
-          				WHERE t.rnum > 1);""")
+					WHERE id IN (	SELECT id 
+					FROM (SELECT id,
+                    ROW_NUMBER() OVER (partition BY user_name ORDER BY id) AS rnum
+                 	FROM user_names) t
+          			WHERE t.rnum > 1);""")
     conn.commit()
     conn.close()
 
@@ -143,7 +143,6 @@ def fetch_user_names():
 	c = conn.cursor()
 	c.execute("""SELECT user_name FROM user_names;""")
 	names = c.fetchall()
-	conn.commit()
 	conn.close()
 
 	for name in names:

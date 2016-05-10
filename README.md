@@ -4,7 +4,7 @@
 * `postgres.py` - Used to initialize database tables and schemas.
 * `application.py` - Front-end of application built with Flask.
 * `model_tuning.py` - Basic gridsearch over hyper-params
-* `scraping.py` - Scrapers used to collect all relavent data for project.
+* `scraping.py` - Scrapers used to collect data.
 * `models.py` - Collects main data and side data to build Graphlab model.
 
 ### Problem
