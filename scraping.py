@@ -50,7 +50,6 @@ def scrape_board_games():
         url = 'https://<private>.com/browse/boardgame/page/%s' % page_number
         z = requests.get(url, headers=headers)
         bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
-
         c = conn.cursor()
 
         for i in xrange(100):

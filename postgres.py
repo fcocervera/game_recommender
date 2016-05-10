@@ -2,10 +2,10 @@ import psycopg2
 
 def create_dbs():
 
-    conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
-    c = conn.cursor()
-    
-   	# 100 most populous cities with associated zip code
+	conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
+	c = conn.cursor()
+
+		# 100 most populous cities with associated zip code
 	try:
 	    c.execute('''
 	    	CREATE TABLE IF NOT EXISTS zip_codes(
@@ -59,7 +59,7 @@ def create_dbs():
 	except psycopg2.Error as e:
 	    pass
 
-    conn.commit()
-    conn.close()
+	conn.commit()
+	conn.close()
 
 

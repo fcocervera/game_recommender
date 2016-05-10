@@ -5,7 +5,7 @@ import graphlab as gl
 
 
 def fetch_mainmodel():
-	return gl.load_model('game_recommender')
+    return gl.load_model('game_recommender')
 
 
 def build_mainmodel():
@@ -44,7 +44,7 @@ def build_maindata():
                 IN (SELECT board_games.title FROM board_games);"""
     df = pd.read_sql_query(query, conn)
     conn.close()
-	return gl.SFrame(data=df)
+    return gl.SFrame(data=df)
 
 
 def map_games_region():
