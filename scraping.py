@@ -53,20 +53,20 @@ def scrape_board_games():
 
 	    c = conn.cursor()
 
-	    for i in xrange(100):
+        for i in xrange(100):
             try:
-    	        title = bsObj.findAll('td', class_="collection_objectname")[i].a.text.encode('utf8')
-    	        avg_rating = bsObj.findAll('td', class_="collection_bggrating")[i*3+1].text.encode('utf8').split('\t')[3]
-    	        rank = bsObj.findAll('td', class_="collection_rank")[i].text.encode('utf8').split('\t')[3]
-    	        num_votes = bsObj.findAll('td', class_="collection_bggrating")[i*3+2].text.encode('utf8').split('\t')[3]
+                title = bsObj.findAll('td', class_="collection_objectname")[i].a.text.encode('utf8')
+                avg_rating = bsObj.findAll('td', class_="collection_bggrating")[i*3+1].text.encode('utf8').split('\t')[3]
+                rank = bsObj.findAll('td', class_="collection_rank")[i].text.encode('utf8').split('\t')[3]
+                num_votes = bsObj.findAll('td', class_="collection_bggrating")[i*3+2].text.encode('utf8').split('\t')[3]
                 imgUrl = bsObj.findAll('td', class_='collection_thumbnail')[i].find(src=True)['src'].strip('//')
 
                 c.execute("""INSERT INTO board_games (title, avg_rating, rank, num_votes, imgurl) 
                         VALUES (%s, %s, %s, %s, %s);""", (title[:100], avg_rating, rank, num_votes, imgUrl))
-    	    	conn.commit()
+                conn.commit()
             except TypeError:
                 pass
-		time.sleep(10) # Pause before next ping to server. Don't get blocked.
+        time.sleep(10) # Pause before next ping to server. Don't get blocked.
     conn.close()
 
 
