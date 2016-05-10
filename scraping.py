@@ -6,52 +6,52 @@ import time
 import numpy as np
 
 def scrape_zip_codes ():
-	city = []
-	state = []
-	zip_codes = []
+    city = []
+    state = []
+    zip_codes = []
 
-	# Prepare information for Requests
-	url = 'http://localistica.com/usa/zipcodes/most-populated-zipcodes/'
-	headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
-	(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
+    # Prepare information for Requests
+    url = 'http://localistica.com/usa/zipcodes/most-populated-zipcodes/'
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
+    (KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
     z = requests.get(url, headers=headers)
-	bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
+    bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
-	# Grab city and state
-	for x in bsObj.findAll('td', align='Left'):
-	    city.append(' '.join(x.a.text.encode('utf8').split()[:-1]))
-	    state.append(x.a.text.encode('utf8').split()[-1:][0])
+    # Grab city and state
+    for x in bsObj.findAll('td', align='Left'):
+        city.append(' '.join(x.a.text.encode('utf8').split()[:-1]))
+        state.append(x.a.text.encode('utf8').split()[-1:][0])
 
-	# Grab the zip code
-	for i, x in enumerate(bsObj.findAll('td', align='Center')):
-	    if i % 5 == 0:
-	        zip_codes.append(x.a.text.encode('utf8'))
+    # Grab the zip code
+    for i, x in enumerate(bsObj.findAll('td', align='Center')):
+        if i % 5 == 0:
+            zip_codes.append(x.a.text.encode('utf8'))
 
-	# Establish connection
-	conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
-	c = conn.cursor()
+    # Establish connection
+    conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
+    c = conn.cursor()
 
-	# Store data
-	for city, state, zip_code in zip(city, state, zip_codes):
+    # Store data
+    for city, state, zip_code in zip(city, state, zip_codes):
         c.execute("""INSERT INTO zip_codes (city, state, zip_code) 
                 VALUES (%s, %s, %s);""", (city, state, zip_code))
 
-	# Close connection
-	conn.commit()
-	conn.close()
+    # Close connection
+    conn.commit()
+    conn.close()
 
 
 def scrape_board_games():
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
-	headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
-	(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
+    (KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
 
-	for page_number in xrange(1, 119): # Stores the top 12,000 board games
-	    url = 'https://<private>.com/browse/boardgame/page/%s' % page_number
+    for page_number in xrange(1, 119): # Stores the top 12,000 board games
+        url = 'https://<private>.com/browse/boardgame/page/%s' % page_number
         z = requests.get(url, headers=headers)
-	    bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
+        bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
-	    c = conn.cursor()
+        c = conn.cursor()
 
         for i in xrange(100):
             try:
@@ -114,14 +114,14 @@ def scrape_user_data(user):
     z = requests.get(url, headers=headers)
     bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
-	title = []
-	rating = []
-	for x in bsObj.findAll('td', class_='collection_objectname'):
-	    title.append(' '.join(x.text.encode('utf8').split()[:-1]))
-	    
+    title = []
+    rating = []
+    for x in bsObj.findAll('td', class_='collection_objectname'):
+        title.append(' '.join(x.text.encode('utf8').split()[:-1]))
+        
     for x in bsObj.findAll('div', class_='rating'):
         rating.append(x.text.encode('utf8'))
-	
+
     if title:
         c = conn.cursor()
         for title, rating in zip(title, rating):
@@ -136,17 +136,17 @@ def scrape_user_data(user):
 
 
 def fetch_user_names():
-	user_names = []
+    user_names = []
 
-	conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
-	c = conn.cursor()
-	c.execute("""SELECT user_name FROM user_names;""")
-	names = c.fetchall()
-	conn.close()
+    conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
+    c = conn.cursor()
+    c.execute("""SELECT user_name FROM user_names;""")
+    names = c.fetchall()
+    conn.close()
 
-	for name in names:
-		user_names.append(name[0].strip())
-	return user_names
+    for name in names:
+    	user_names.append(name[0].strip())
+    return user_names
 
 
 def scrape_user_location(user):
@@ -212,7 +212,7 @@ def scrape_user_location(user):
     states_long = set(states.values())
     states_abbrev = set(states.keys())
     states = states_abbrev.union(states_long)
-    
+
     user_city = ''
     user_state = ''
     if len(user.split()) == 1:
@@ -252,10 +252,10 @@ def scrape_user_location(user):
 
 
 if __name__ == '__main__':
-	users_names = fetch_user_names()
-	pool = ThreadPool(8) 
-	pool.map(scrape_user_data, users_names)
+    users_names = fetch_user_names()
+    pool = ThreadPool(8) 
+    pool.map(scrape_user_data, users_names)
 
-	pool.close() 
-	pool.join() 
+    pool.close() 
+    pool.join() 
 
