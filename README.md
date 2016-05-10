@@ -1,11 +1,11 @@
 ## Recommender Capstone Project
 
 ### File Descriptions
-	- `postgres.py` - Used to initialize database tables and schemas.
-	- `application.py` - Front-end of application built with Flask.
-	- `model_tuning.py` - Basic gridsearch over hyper-params
-	- `scraping.py` - Scrapers used to collect all relavent data for project.
-	- `models.py` - Collects main data and side data to build Graphlab model.
+* `postgres.py` - Used to initialize database tables and schemas.
+* `application.py` - Front-end of application built with Flask.
+* `model_tuning.py` - Basic gridsearch over hyper-params
+* `scraping.py` - Scrapers used to collect all relavent data for project.
+* `models.py` - Collects main data and side data to build Graphlab model.
 
 ### Problem
 Companies are looking to increase sales. Instead of randomly selecting items to display to visitors, they prefer a targeted approach that increases the likelihood of displaying an item the visitor will buy.
@@ -26,11 +26,12 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 * Python 2.7
 * Graphlab
 * PostreSQL
+* psycopg2
 * BeautifulSoup
 * Flask
 * Zurb Foundation 6
 * AWS for Gridsearch
 
 ### Results
-- Happy customers are now seeing more games they like and company making more revenue.
+Happy customers are now seeing more games they like and company making more revenue.
 
