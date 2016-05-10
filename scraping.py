@@ -48,7 +48,7 @@ def scrape_board_games():
 
 	for page_number in xrange(1, 119): # Stores the top 12,000 board games
 	    url = 'https://<private>.com/browse/boardgame/page/%s' % page_number
-    	z = requests.get(url, headers=headers)
+        z = requests.get(url, headers=headers)
 	    bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
 	    c = conn.cursor()
@@ -75,10 +75,9 @@ def scrape_usernames(zip_codes):
     for zip_code in zip_codes:
         users = set()
         url = 'https://<private>.com/findgamers.php?action=findclosest&country=US&srczip=%s&maxdist=100&B1=Submit' % zip_code
-	
-		headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
-		(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}	    
-		z = requests.get(url, headers=headers)
+        headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
+            (KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}	    
+        z = requests.get(url, headers=headers)
 
         bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
@@ -95,23 +94,23 @@ def scrape_usernames(zip_codes):
  	# Delete duplicates in case of overlap for zip code 100 mile radius.
     c = conn.cursor()
     c.execute(""" DELETE FROM user_names
-					WHERE id IN (	SELECT id 
-					FROM (SELECT id,
+                    WHERE id IN (SELECT id 
+                    FROM (SELECT id,
                     ROW_NUMBER() OVER (partition BY user_name ORDER BY id) AS rnum
-                 	FROM user_names) t
-          			WHERE t.rnum > 1);""")
+                    FROM user_names) t
+                    WHERE t.rnum > 1);""")
     conn.commit()
     conn.close()
 
 
 def scrape_user_data(user):
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
-	if len(user.split()) == 1:
-		url = 'https://<private>.com/collection/user/%s' % (user)
-	else:
-		url = 'https://<private>.com/collection/user/%s' % ('%20'.join(user.split()))
-	headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
-	(KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
+    if len(user.split()) == 1:
+        url = 'https://<private>.com/collection/user/%s' % (user)
+    else:
+        url = 'https://<private>.com/collection/user/%s' % ('%20'.join(user.split()))
+    headers = {'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 \
+    (KHTML, like Gecko) Chrome/48.0.1564.116 Safari/537.36'}
     z = requests.get(url, headers=headers)
     bsObj = BeautifulSoup(z.content, "html.parser", from_encoding='UTF-8')
 
@@ -120,16 +119,16 @@ def scrape_user_data(user):
 	for x in bsObj.findAll('td', class_='collection_objectname'):
 	    title.append(' '.join(x.text.encode('utf8').split()[:-1]))
 	    
-	for x in bsObj.findAll('div', class_='rating'):
-	    rating.append(x.text.encode('utf8'))
+    for x in bsObj.findAll('div', class_='rating'):
+        rating.append(x.text.encode('utf8'))
 	
-	if title:
-		c = conn.cursor()
-		for title, rating in zip(title, rating):
-		    if rating != 'N/A':
-		    	rating = float(rating.strip('\n'))
-        		c.execute("""INSERT INTO title_rating (user_name, title, rating) VALUES (%s, %s, %s);""", 
-	            	(user, title[:100], rating))
+    if title:
+        c = conn.cursor()
+        for title, rating in zip(title, rating):
+            if rating != 'N/A':
+                rating = float(rating.strip('\n'))
+                c.execute("""INSERT INTO title_rating (user_name, title, rating) VALUES (%s, %s, %s);""", 
+                	(user, title[:100], rating))
         conn.commit()
     conn.close()
     time.sleep(15)
