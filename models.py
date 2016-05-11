@@ -10,11 +10,12 @@ def fetch_mainmodel():
 
 def build_mainmodel():
     data = build_maindata()
+    print data
     sidedata = build_sidedata()
     model = gl.recommender.factorization_recommender.create( 
     						data, 
-                            user_id="user_id", 
-                            item_id="item_id", 
+                            user_id="user_name", 
+                            item_id="title", 
                             target="rating",
                             item_data=sidedata,
     						max_iterations=25,

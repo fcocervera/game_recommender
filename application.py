@@ -21,7 +21,7 @@ def predict():
     imgUrls = defaultdict(list)
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
     c = conn.cursor()
-    for title in recs['item_id']:
+    for title in recs['title']:
         c.execute("""   SELECT imgurl, avg_rating 
                         FROM board_games 
                         WHERE title = %s; """, (title, ))
@@ -32,23 +32,23 @@ def predict():
     print recs
 
     return render_template('response.html', 
-    						rec_one=recs['item_id'][0],
-    						rec_two=recs['item_id'][1],
-    						rec_three=recs['item_id'][2],
-    						rec_four=recs['item_id'][3],
-    						rec_five=recs['item_id'][4],
+    						rec_one=recs['title'][0],
+    						rec_two=recs['title'][1],
+    						rec_three=recs['title'][2],
+    						rec_four=recs['title'][3],
+    						rec_five=recs['title'][4],
 
-                            pic_one=imgUrls[recs['item_id'][0]][0],
-                            pic_two=imgUrls[recs['item_id'][1]][0],
-                            pic_three=imgUrls[recs['item_id'][2]][0],
-                            pic_four=imgUrls[recs['item_id'][3]][0],
-                            pic_five=imgUrls[recs['item_id'][4]][0], 
+                            pic_one=imgUrls[recs['title'][0]][0],
+                            pic_two=imgUrls[recs['title'][1]][0],
+                            pic_three=imgUrls[recs['title'][2]][0],
+                            pic_four=imgUrls[recs['title'][3]][0],
+                            pic_five=imgUrls[recs['title'][4]][0], 
 
-                            rating_one=imgUrls[recs['item_id'][0]][1],
-                            rating_two=imgUrls[recs['item_id'][1]][1],
-                            rating_three=imgUrls[recs['item_id'][2]][1],
-                            rating_four=imgUrls[recs['item_id'][3]][1],
-                            rating_five=imgUrls[recs['item_id'][4]][1]
+                            rating_one=imgUrls[recs['title'][0]][1],
+                            rating_two=imgUrls[recs['title'][1]][1],
+                            rating_three=imgUrls[recs['title'][2]][1],
+                            rating_four=imgUrls[recs['title'][3]][1],
+                            rating_five=imgUrls[recs['title'][4]][1]
 
                             )
 

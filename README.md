@@ -3,7 +3,6 @@
 <p align="center">
   <img src="/img/hero.png">
 </p>
-
 ### General Overview
 
 
@@ -24,6 +23,11 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 
 ### Results
 Happy customers are now seeing more games they like and company making more revenue.
+
+### Output
+<p align="center">
+  <img src="/img/output.png">
+</p>
 
 ### Tools Used
 * Python 2.7
