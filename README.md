@@ -4,15 +4,15 @@
   <img src="/img/hero.png">
 </p>
 ### General Overview
+Companies are looking to increase sales. Instead of randomly selecting items to display to visitors, they prefer a targeted approach that increases the likelihood of displaying an item the visitor will buy. Enter recommender engines!
+
+In the Venn diagram below, where 'R' is our inventory of board games and 'V' is the board games our visitors are interestd in buying, recommenders will increase RUV to maximize the likelihood of a purchase. 
+
+<p align="center">
+  <img src="/img/venn.png">
+</p>
 
 
-### Problem
-Companies are looking to increase sales. Instead of randomly selecting items to display to visitors, they prefer a targeted approach that increases the likelihood of displaying an item the visitor will buy.
-
-### Solution
-In the Venn diagram below, where 'R' is our inventory of board games and 'V' is the board games our visitors are interestd in buying, recommenders will increase RUV to increase the likelihood of a purchase. 
-
-![Alt text](/img/venn.png?raw=true "Image Title")
 
 ### Recommender Build Process
 * Scraped 600K data points, representing roughly 12,000 board games rated by 31,000 users.
