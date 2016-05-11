@@ -51,14 +51,14 @@ train, test = gl.recommender.util.random_split_by_user( \
 #'target': 'rating'}
 
 model = gl.recommender.factorization_recommender.create( 
-								data, 
-	                            user_id="user_id", 
-	                            item_id="item_id", 
-	                            target="rating",
-	                            item_data=sidedata,
-								max_iterations=25,
-								num_factors=6,
-								regularization=0.001)
+                                data, 
+                                user_id="user_id", 
+                                item_id="item_id", 
+                                target="rating",
+                                item_data=sidedata,
+                                max_iterations=25,
+                                num_factors=6,
+                                regularization=0.001)
 
 test['predict'] = model.predict(test)
 test['rating_B'] = test['rating'].apply(lambda x: 1 if x>=8 else 0)

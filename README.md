@@ -16,13 +16,17 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 
 ### Recommender Build Process
 * Scraped 600K data points, representing roughly 12,000 board games rated by 31,000 users.
-* EDA how many ratings per user, density of matrix
-* Cold start problem.
-* In the end I was able to achieve good results with x metrics.
-* For fun I wanted to see if there were areas of popularity for certain games within different regions. So if I recommended a board game, you could see where else this game was popular.
+* EDA to better understand density of matrix and distribution of ratings.
+* Considered appropriate error metric for final model.
+* Determined how I would handle 'cold start problem.'
+* Built model using Graphlabs implementation of matrix factorization.
+* Grid search to tune hyperparameters on AWS.
+* Calculate precision and recall.
+* Built prototpe with Flask and Zurb Foundation 6.
+* Lastly, for fun I wanted to see if there were geographic areas of popularity for particular games. Meaning that if I recommended a board game, you could see a map demostrating where else this game was popular.
 
 ### Results
-I opted to create a classification scoring model that predicted a users rating above or below a given threshold of 7. Instances correctly predicting above a 7, were True Positives (TP) and so forth. This allowed me the flexibility to tune the parameters with the aid of a confusion matrix and optimizing for precision and recall, with final results of ...
+I opted to create a classification scoring model that predicted a users rating above or below a given threshold of 8. Instances correctly predicting above a 8, were True Positives (TP) and so forth. This allowed me the flexibility to tune the parameters with the aid of a confusion matrix and optimizing for precision and recall, with final results of ...
 
 * Low Precision means high FP. We recommended something they didn't like. They're annoyed.
 * Low Recall means high FN. We we didn't recommend something that they would have liked. They're missing out.
