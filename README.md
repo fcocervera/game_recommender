@@ -27,7 +27,7 @@ I opted to create a classification scoring model that predicted a users rating a
 * Low Precision means high FP. We recommended something they didn't like. They're annoyed.
 * Low Recall means high FN. We we didn't recommend something that they would have liked. They're missing out.
 
-In a real world scenario, I would have optimized for precision/recall by A/B testing and different settings and maximizing for conversions.
+In a real world scenario, I would have optimized for precision/recall by A/B testing different settings and maximizing for conversions.
 
 ### Output
 <p align="center">
