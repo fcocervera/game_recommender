@@ -24,9 +24,7 @@ def confusion_matrix(y_true, y_predict):
     print "Precision: ", tp/float(tp+fp)
     print '\n'
     print np.array([[tp, fp],[fn, tn]])
-
-# Low Precision means high FP. We recommended something they didn't like. They're annoyed.
-# Low Recall means high FN. We we didn't recommend something that they would have liked. They're missing out.
+    
 
 data = models.build_maindata()
 sidedata = models.build_sidedata()

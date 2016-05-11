@@ -22,7 +22,12 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 * For fun I wanted to see if there were areas of popularity for certain games within different regions. So if I recommended a board game, you could see where else this game was popular.
 
 ### Results
-Happy customers are now seeing more games they like and company making more revenue.
+I opted to create a classification scoring model that predicted a users rating above or below a given threshold of 7. Instances correctly predicting above a 7, were True Positives (TP) and so forth. This allowed me the flexibility to tune the parameters with the aid of a confusion matrix and optimizing for precision and recall, with final results of ...
+
+* Low Precision means high FP. We recommended something they didn't like. They're annoyed.
+* Low Recall means high FN. We we didn't recommend something that they would have liked. They're missing out.
+
+In a real world scenario, I would have optimized for precision/recall by A/B testing and different settings and maximizing for conversions.
 
 ### Output
 <p align="center">
