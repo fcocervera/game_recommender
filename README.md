@@ -1,5 +1,9 @@
 ## Recommender Capstone Project
 
+<p align="center">
+  <img src="/img/hero.png">
+</p>
+
 ### General Overview
 
 
@@ -29,7 +33,6 @@ Happy customers are now seeing more games they like and company making more reve
 * BeautifulSoup
 * Flask
 * Zurb Foundation 6
-* CartoDB
 * AWS for Gridsearch
 
 ### File Descriptions
