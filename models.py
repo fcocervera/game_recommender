@@ -5,10 +5,30 @@ import graphlab as gl
 
 
 def fetch_mainmodel():
+    '''
+    INPUT:
+        - None: None
+
+    OUTPUT:
+        - None: None
+        
+    Scrapes www.localistica.com for 100 most populous zip codes.
+    Stores the zip codes and associated city, state pair in the database.
+    '''
     return gl.load_model('game_recommender')
 
 
 def build_mainmodel():
+    '''
+    INPUT:
+        - None: None
+
+    OUTPUT:
+        - None: None
+        
+    Scrapes www.localistica.com for 100 most populous zip codes.
+    Stores the zip codes and associated city, state pair in the database.
+    '''
     data = build_maindata()
     print data
     sidedata = build_sidedata()
@@ -25,6 +45,16 @@ def build_mainmodel():
 
 
 def build_sidedata():
+    '''
+    INPUT:
+        - None: None
+
+    OUTPUT:
+        - None: None
+        
+    Scrapes www.localistica.com for 100 most populous zip codes.
+    Stores the zip codes and associated city, state pair in the database.
+    '''
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
     query = """     SELECT title_rating.title, avg_rating, num_votes 
                     FROM title_rating   
@@ -35,9 +65,17 @@ def build_sidedata():
     conn.close()
     return gl.SFrame(data=df)
 
-# COPY (SELECT user_name, title, rating FROM title_rating WHERE title IN (SELECT title FROM board_games)) To '/Users/franciscocervera/Desktop/output.csv' With CSV;
-
 def build_maindata():
+    '''
+    INPUT:
+        - None: None
+
+    OUTPUT:
+        - None: None
+        
+    Scrapes www.localistica.com for 100 most populous zip codes.
+    Stores the zip codes and associated city, state pair in the database.
+    '''
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
     query = """ SELECT user_name, title, rating 
                 FROM title_rating 
@@ -49,6 +87,16 @@ def build_maindata():
 
 
 def map_games_region():
+    '''
+    INPUT:
+        - None: None
+
+    OUTPUT:
+        - None: None
+        
+    Scrapes www.localistica.com for 100 most populous zip codes.
+    Stores the zip codes and associated city, state pair in the database.
+    '''
     states = {
         'AK': 'Alaska',
         'AL': 'Alabama',

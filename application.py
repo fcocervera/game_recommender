@@ -5,6 +5,7 @@ from collections import defaultdict
 
 app = Flask(__name__)
 
+# Build and fetch main model for application
 build_mainmodel()
 model = fetch_mainmodel()
 

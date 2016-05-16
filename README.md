@@ -1,5 +1,8 @@
 ## Recommender Capstone Project
 
+### Introduction
+Companies are looking to increase sales. Instead of randomly selecting items to display to visitors, they prefer a targeted approach that increases the likelihood of displaying an item the visitor will buy. Enter recommender engines!
+
 <p align="center">
   <img src="/img/hero.png">
 </p>
@@ -18,7 +21,7 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 * Scraped 600K data points, representing roughly 12,000 board games rated by 31,000 users.
 * EDA to better understand density of matrix and distribution of ratings.
 * Considered appropriate error metric for final model.
-* Determined how I would handle 'cold start problem.'
+* Determined solution to 'cold start problem.'
 * Built model using Graphlabs implementation of matrix factorization.
 * Grid search to tune hyperparameters on AWS.
 * Calculate precision and recall.
