@@ -1,7 +1,8 @@
 ## Recommender Capstone Project
 
 ### Introduction
-Companies are looking to increase sales. Instead of randomly selecting items to display to visitors, they prefer a targeted approach that increases the likelihood of displaying an item the visitor will buy. Enter recommender engines!
+For my Data Science Immersive capstone project at Galvanize, I built a recommender system for an online board game website. 
+
 
 <p align="center">
   <img src="/img/hero.png">
@@ -14,8 +15,6 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 <p align="center">
   <img src="/img/venn.png">
 </p>
-
-
 
 ### Recommender Build Process
 * Scraped 600K data points, representing roughly 12,000 board games rated by 31,000 users.
