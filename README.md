@@ -1,8 +1,7 @@
 ## Recommender Capstone Project
 
 ### Introduction
-For my Data Science Immersive capstone project at Galvanize, I built a recommender system for an online board game website. 
-
+For my Data Science Immersive capstone project at Galvanize, I built a recommender system for an online board game website. Enjoy!
 
 <p align="center">
   <img src="/img/hero.png">
@@ -28,12 +27,9 @@ In the Venn diagram below, where 'R' is our inventory of board games and 'V' is 
 * Lastly, for fun I wanted to see if there were geographic areas of popularity for particular games. Meaning that if I recommended a board game, you could see a map demostrating where else this game was popular.
 
 ### Results
-I opted to create a classification scoring model that predicted a users rating above or below a given threshold of 8. Instances correctly predicting above a 8, were True Positives (TP) and so forth. This allowed me the flexibility to tune the parameters with the aid of a confusion matrix and optimizing for precision and recall, with final results of ...
+I opted to create a classification scoring model that predicted a users rating above or below a given threshold of 8. Instances correctly predicting above a 8, were True Positives (TP) and so forth. This allowed me the flexibility to tune the parameters with the aid of a confusion matrix and optimizing for precision and recall, with final results of 0.41 Recall and 0.89 Precision.
 
-* Low Precision means high FP. We recommended something they didn't like. They're annoyed.
-* Low Recall means high FN. We we didn't recommend something that they would have liked. They're missing out.
-
-In a real world scenario, I would have optimized for precision/recall by A/B testing different settings and maximizing for conversions.
+In a real world scenario, I would have optimized precision/recall specifically to the website by A/B testing different settings and maximizing for conversions.
 
 ### Output
 <p align="center">

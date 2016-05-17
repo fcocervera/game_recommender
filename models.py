@@ -12,8 +12,8 @@ def fetch_mainmodel():
     OUTPUT:
         - None: None
         
-    Scrapes www.localistica.com for 100 most populous zip codes.
-    Stores the zip codes and associated city, state pair in the database.
+    Graphlab allows you to store your model, similar to storing a model as a pickle.
+    This function will grab and load the chosen model.
     '''
     return gl.load_model('game_recommender')
 
@@ -26,11 +26,9 @@ def build_mainmodel():
     OUTPUT:
         - None: None
         
-    Scrapes www.localistica.com for 100 most populous zip codes.
-    Stores the zip codes and associated city, state pair in the database.
+    Pulls relevant data from database to build model and stores model for later use.
     '''
     data = build_maindata()
-    print data
     sidedata = build_sidedata()
     model = gl.recommender.factorization_recommender.create( 
                         data, 
@@ -52,8 +50,8 @@ def build_sidedata():
     OUTPUT:
         - None: None
         
-    Scrapes www.localistica.com for 100 most populous zip codes.
-    Stores the zip codes and associated city, state pair in the database.
+    Pulls relevant data from database to build sidedata.
+    Used for cold-start problem.
     '''
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
     query = """     SELECT title_rating.title, avg_rating, num_votes 
@@ -71,10 +69,9 @@ def build_maindata():
         - None: None
 
     OUTPUT:
-        - None: None
+        - Sframe: Maindate Sframe
         
-    Scrapes www.localistica.com for 100 most populous zip codes.
-    Stores the zip codes and associated city, state pair in the database.
+    Returns an Sframe that is used by to build the main model.
     '''
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
     query = """ SELECT user_name, title, rating 
@@ -92,10 +89,9 @@ def map_games_region():
         - None: None
 
     OUTPUT:
-        - None: None
+        - .csv: File saved to desktop containing the board games and regions of use. 
         
-    Scrapes www.localistica.com for 100 most populous zip codes.
-    Stores the zip codes and associated city, state pair in the database.
+    Maps the popularity of games across different regions to display on CartoDB map.
     '''
     states = {
         'AK': 'Alaska',
