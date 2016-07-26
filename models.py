@@ -151,6 +151,7 @@ def map_games_region():
         'WI': 'Wisconsin',
         'WV': 'West Virginia',
         'WY': 'Wyoming'}
+        
     conn = psycopg2.connect(dbname='capstone', user='franciscocervera', host='/tmp')
 
     # Grab user info
