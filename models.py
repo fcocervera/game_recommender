@@ -178,4 +178,5 @@ def map_games_region():
                 df = df.append({'title': x[0], 'city': x[1], 'state': states[x[2]]}, ignore_index=True)
             else:
                 df = df.append({'title': x[0], 'city': x[1], 'state': x[2]}, ignore_index=True)
+                
     df.to_csv('title_region_map.csv')
