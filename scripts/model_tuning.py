@@ -17,7 +17,10 @@ def confusion_matrix(y_true, y_predict):
     In our case model was checked against a correct prediction equal to or above 8.
     Prints confusion matrix to screen.
     '''
-    tp = fn = fp = tn = 0
+    tp = 0
+    fn = 0
+    fp = 0
+    tn = 0
     for true,pred in zip(y_true, y_predict):
         if true == 0:
             if pred == 0:
